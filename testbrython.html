@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Python Exercise with Brython</title>
+    <!-- Include Brython and other necessary scripts and styles -->
+    <!-- src="https://storage.googleapis.com/courses_data/Python%20Data/brython-master/www/src/brython.js" -->
+    <!-- onclick="location.reload();" -->
+    <script
+      type="text/javascript"
+      src="brython-master\www\src\brython.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="brython-master\www\src\brython_stdlib.js"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+      integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+    <link href="styleHT.css" rel="stylesheet" type="text/css" />
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/codemirror.min.js"
+      integrity="sha512-8RnEqURPUc5aqFEN04aQEiPlSAdE0jlFS/9iGgUyNtwFnSKCXhmB6ZTNl7LnDtDWKabJIASzXrzD0K+LYexU9g=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/codemirror.css"
+      integrity="sha512-7vaQ4LLdaXd2IuMd4MUQ6LRFIGbEwJI1aq6KYqL3RjbdQyUkRFhwZKmqmkBXurTFdGlx687lTN8FSJfX6Df8Gw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/mode/python/python.min.js"
+      integrity="sha512-2M0GdbU5OxkGYMhakED69bw0c1pW3Nb0PeF3+9d+SnwN1ryPx3wiDdNqK3gSM7KAU/pEV+2tFJFbMKjKAahOkQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.45.0/min/vs/loader.min.js"
+      integrity="sha512-ZG31AN9z/CQD1YDDAK4RUAvogwbJHv6bHrumrnMLzdCrVu4HeAqrUX7Jsal/cbUwXGfaMUNmQU04tQ8XXl5Znw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+  </head>
+  <body onload="brython();">
+    <div class="container-fluid">
+      <div class="row">
+        <!-- Left Column: Title/Description/Examples -->
+        <div class="col-md-3">
+          <div class="title-container">
+            <h1>Python Exercise</h1>
+            <p class="description">
+              Write a function add(a, b) that returns the sum of a and b and
+              prints the result.
+            </p>
+            <!-- Stylized Examples Section -->
+            <div id="examplesSection">
+              <h2>Examples</h2>
+              <div class="card">
+                <div class="card-header">Example 1</div>
+                <div class="card-body">
+                  <p class="card-text">Here's a simple Python function:</p>
+                  <pre><code class="language-python">def add(a,b):</code></pre>
+                </div>
+              </div>
+
+              <!-- More examples... -->
+            </div>
+            <!-- Additional content like examples -->
+          </div>
+        </div>
+
+        <!-- Middle Column: Exercise Box -->
+        <div class="col-md-6">
+          <div class="exercise-container">
+            <textarea class="form-control" id="pythonCode" rows="5">
+# Write your Python script here</textarea
+            >
+            <div id="monacoEditor" style="height: 400px"></div>
+
+            <button class="btn btn-primary mt-2" id="runCode">Run Code</button>
+            <button class="btn btn-info mt-2" id="showHint">Show Hint</button>
+            <div id="hint" class="alert alert-info mt-2 d-none">
+              <strong>Hint:</strong> You will need to return a print function
+              like this : return(print())
+            </div>
+            <!-- hidden monaco -->
+
+            <button class="btn btn-danger mt-2" id="stopCode">
+              <!-- onclick="location.reload();" -->
+              Stop Execution
+            </button>
+            <div class="alert alert-secondary mt-2" id="output">
+              Result will be shown here
+            </div>
+          </div>
+          <!-- Watch Tutorial Video -->
+          <div>
+            <button class="btn btn-info mb-3" type="button" id="toggleVideoBtn">
+              Watch Tutorial Video
+            </button>
+            <div class="collapse" id="collapseVideo">
+              <div class="card card-body">
+                <iframe
+                  width="100%"
+                  height="400"
+                  src="https://scrimba.com/scrim/c8pdEGHB"
+                  frameborder="0"
+                ></iframe>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Theory Sidebar Tab -->
+    <div id="theoryTab" class="btn btn-primary theory-tab">
+      <svg
+        style="color: rgb(0, 0, 0)"
+        xmlns="http://www.w3.org/2000/svg"
+        width="16"
+        height="16"
+        fill="currentColor"
+        class="bi bi-book"
+        viewBox="0 0 16 16"
+      >
+        <path
+          d="M1 2.828c.885-.37 2.154-.769 3.388-.893 1.33-.134 2.458.063 3.112.752v9.746c-.935-.53-2.12-.603-3.213-.493-1.18.12-2.37.461-3.287.811V2.828zm7.5-.141c.654-.689 1.782-.886 3.112-.752 1.234.124 2.503.523 3.388.893v9.923c-.918-.35-2.107-.692-3.287-.81-1.094-.111-2.278-.039-3.213.492V2.687zM8 1.783C7.015.936 5.587.81 4.287.94c-1.514.153-3.042.672-3.994 1.105A.5.5 0 0 0 0 2.5v11a.5.5 0 0 0 .707.455c.882-.4 2.303-.881 3.68-1.02 1.409-.142 2.59.087 3.223.877a.5.5 0 0 0 .78 0c.633-.79 1.814-1.019 3.222-.877 1.378.139 2.8.62 3.681 1.02A.5.5 0 0 0 16 13.5v-11a.5.5 0 0 0-.293-.455c-.952-.433-2.48-.952-3.994-1.105C10.413.809 8.985.936 8 1.783z"
+          fill="#000000"
+        ></path>
+      </svg>
+    </div>
+
+    <!-- Theory Sidebar Content -->
+    <div id="theoryPanel" class="theory-panel">
+      <div class="theory-content">
+        <h3>Theory Behind the Exercise</h3>
+        <p>Understanding Basic Python Print Function...</p>
+      </div>
+    </div>
+
+    <div id="bottomOutput" class="floating-output">
+      <!-- Output will be displayed here -->
+    </div>
+
+    <!-- Load the Python script after the DOM elements -->
+    <script
+      type="text/python"
+      class="webworker"
+      id="worker1"
+      src="https://storage.googleapis.com/courses_data/Python%20Data/worker_script.py"
+    >
+      # Your worker script Python code goes here
+    </script>
+    <script
+      type="text/python"
+      src="https://storage.googleapis.com/courses_data/Python%20Data/main_script1.py"
+    ></script>
+    <script src="index.js"></script>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
+      integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
+      integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
+      crossorigin="anonymous"
+    ></script>
+    <!-- Other scripts -->
+  </body>
+</html>
